@@ -12,10 +12,16 @@ temp_min = np.array([21, 23, 27, 28, 32, 35, 31, 28, 21, 19, 17, 18])
 months = np.arange(12)
 
 
+'''
+    periodic cos function to fit the data
+'''
 def yearly_temps(times, avg, amplitude, time_offset):
     return avg + amplitude * np.cos((times + time_offset) * 2 * np.pi / times.max())
 
-
+'''
+    res_max - residual max values after fitting the curve with the periodic function
+    res_min - residual min values after fitting the curve with the periodic function
+'''
 res_max, cov_max = optimize.curve_fit(yearly_temps, months,
                                       temp_max)
 res_min, cov_min = optimize.curve_fit(yearly_temps, months,
